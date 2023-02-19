@@ -1,11 +1,10 @@
-//Put your name(s) here:
+//Put your name(s) here: Jose Cuevas, Ayden Messick, Rohan Otal
 //What bullet points did you do:
-//Delete this next line to let the code compile
-//#error Delete This!
 #include "map.h"
 #include <unistd.h>
+#include "test.h"
 
-const int MAX_FPS = 90; //Cap frame rate 
+const int MAX_FPS = 90; //Cap frame rate
 const unsigned int TIMEOUT = 10; //Milliseconds to wait for a getch to finish
 const int UP = 65; //Key code for up arrow
 const int DOWN = 66;
@@ -16,12 +15,12 @@ const int RIGHT = 67;
 void turn_on_ncurses() {
 	initscr();//Start curses mode
 	start_color(); //Enable Colors if possible
-	init_pair(1,COLOR_WHITE,COLOR_BLACK); //Set up some color pairs
-	init_pair(2,COLOR_CYAN,COLOR_BLACK);
-	init_pair(3,COLOR_GREEN,COLOR_BLACK);
-	init_pair(4,COLOR_YELLOW,COLOR_BLACK);
-	init_pair(5,COLOR_RED,COLOR_BLACK);
-	init_pair(6,COLOR_MAGENTA,COLOR_BLACK);
+	init_pair(1, COLOR_WHITE, COLOR_BLACK); //Set up some color pairs
+	init_pair(2, COLOR_CYAN, COLOR_BLACK);
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);
+	init_pair(4, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(5, COLOR_RED, COLOR_BLACK);
+	init_pair(6, COLOR_MAGENTA, COLOR_BLACK);
 	clear();
 	noecho();
 	cbreak();
@@ -46,12 +45,10 @@ int main() {
 		else if (ch == RIGHT) {
 			x++;
 			if (x >= Map::SIZE) x = Map::SIZE - 1; //Clamp value
-		}
-		else if (ch == LEFT) {
+		} else if (ch == LEFT) {
 			x--;
 			if (x < 0) x = 0;
-		}
-		else if (ch == UP) {
+		} else if (ch == UP) {
 			/* If you want to do cin and cout, turn off ncurses, do your thing, then turn it back on
 			turn_off_ncurses();
 			string s;
@@ -62,17 +59,15 @@ int main() {
 			*/
 			y--;
 			if (y < 0) y = 0;
-		}
-		else if (ch == DOWN) {
+		} else if (ch == DOWN) {
 			y++;
 			if (y >= Map::SIZE) y = Map::SIZE - 1; //Clamp value
-		}
-		else if (ch == ERR) { //No keystroke
+		} else if (ch == ERR) { //No keystroke
 			; //Do nothing
 		}
 		//Stop flickering by only redrawing on a change
 		if (x != old_x or y != old_y) {
-			/* Do something like this, idk 
+			/* Do something like this, idk
 			if (map.get(x,y) == Map::TREASURE) {
 				map.set(x,y,Map::OPEN);
 				money++;
@@ -82,13 +77,13 @@ int main() {
 			}
 			*/
 			//clear(); //Put this in if the screen is getting corrupted
-			map.draw(x,y);
-			mvprintw(Map::DISPLAY+1,0,"X: %i Y: %i\n",x,y);
+			map.draw(x, y);
+			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i\n", x, y);
 			refresh();
 		}
 		old_x = x;
 		old_y = y;
-		usleep(1'000'000/MAX_FPS);
+		usleep(1'000'000 / MAX_FPS);
 	}
 	turn_off_ncurses();
 }
