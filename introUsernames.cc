@@ -8,6 +8,8 @@ using namespace std;
 
 //usleep measures in microseconds. 1 million microseconds = 1 second
 //we can add more well-timed sleep commands between lines of dialogue later when we decide to go back and polish stuff
+//Mencarelli says using std::flush can help with outputting half a life + usleep
+
 
 //TODO vet the input eventually
 
