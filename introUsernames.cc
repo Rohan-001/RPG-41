@@ -24,7 +24,19 @@ int main() {
 	cout << "(Player 2 name):\t";
 	cin >> p2name;
 
-	cout << "Checking" << endl;
+	cout << "Checking";
+	for (int i = 0; i < 3; i++) {
+		//insert a sleep function right here for like 300ms
+		cout << ".";
+
+	}
+	cout << endl << "Success! " << p2name << " is on " << p1name << "'s friend list!" << endl;
+	cout << "GUEST(1), would you like to also sign in before joining?" << endl;
+
+	cout << "\n\t(1) Sign in (enter username)\n\t(2) Do not (remain as guest user)\n" << endl;
+
+	//TODO cin user choice. This is one of the "get putton input" things, so we might want to turn on quick read for a little
+	//if they input 1, then prompt for player 3's name just like before. If they input 2, set p3name to "GUEST(1)" which will remain their name for the rest of the game.
 
 
 }
