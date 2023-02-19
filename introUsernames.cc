@@ -66,11 +66,12 @@ int main() {
 		cout << "Success!" << endl;
 
 	} else {
+		p3name = "GUEST(1)";
 
-		cout << "GUEST(1) will remain a guest user." << endl;
+		cout <<  "GUEST(1) will remain a guest user." << endl;
 	}
 
-	cout << "\n" << p2name << " and " << p3name << "are now joining " << p1name << "..." << endl;
+	cout << "\n" << p2name << " and " << p3name << " are now joining " << p1name << "..." << endl;
 	cout << "Good luck, and have fun!" << endl;
 
 
