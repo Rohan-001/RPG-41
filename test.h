@@ -5,14 +5,12 @@
 
 using namespace std;
 
-//FIXME this code is not compiling!
-
 ///////////////////////
 // ACTORS BASE CLASS //
 class Actor { 
 	protected:
 		int xLoc = 0, yLoc = 0;
-		int speed = 10; //FIXME this value is causing lots of compiler errors!
+		int speed = 10;
 	public:
 		
 		Actor(int new_x = 0, int new_y = 0) : xLoc(new_x), yLoc(new_y) {
@@ -74,7 +72,7 @@ void speaker(shared_ptr<Actor> act) {
 
 //this function sorts the actors by speed
 bool sortSpeed(const shared_ptr<Actor> &lhs, const shared_ptr<Actor> &rhs) {
-	return lhs->speed < rhs->speed; 
+	return lhs->get_speed() < rhs->get_speed(); 
 }
 
 /* 
