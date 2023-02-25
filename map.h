@@ -7,11 +7,13 @@
 #include "./map_configs.h"
 using namespace std; //Boo hiss
 
+
 class Map {
 	vector<vector<char>> map;
 	default_random_engine gen;
 	public:
 	//TODO: Write a getter and a setter to get/set the characters in the map
+		//empty functions for this^ are just under the draw(x,y) function
 	//TODO: Write a function to save the map and reload the map
 	static const char HERO     = 'H';
 	static const char MONSTER  = 'M';
@@ -109,6 +111,14 @@ class Map {
 			}
 		}
 	}
+
+	void set_tile(int x, int y, char new_char) {
+		//TODO
+	}
+	char get_tile(int x, int y) {
+		//TODO
+	}
+
 	Map() {
 		init_map();
 	}
