@@ -27,7 +27,7 @@ class Actor {
 
 /////////////////////////////////
 // HEROES SUBCLASS FROM ACTORS //
-class Heroes : public Actor {
+class Hero : public Actor {
 	protected: 
 		int HP = 10;
 	public:
@@ -38,7 +38,7 @@ class Heroes : public Actor {
 };
 
 // ROLES SUBCLASS FROM HEROES //
-struct Rogue : public Heroes {
+struct Rogue : public Hero {
 	void speak () const override {
 		cout << "I am a Rogue with speed " << speed << endl;
 		cout << "I start with this much HP: " << HP << endl;
@@ -82,6 +82,11 @@ bool sortSpeed(const shared_ptr<Actor> &lhs, const shared_ptr<Actor> &rhs) {
 
 	vector<shared_ptr<Actor>> vec;
 	note that things have to be added to this vector in a particular way
+
+	adding things to the above vector looks like this:
+	vec.push_back(make_shared<Actor>(objectName))
+
+	(assuming objectName is of a class that inherits Actor)
 
 
 */ 
