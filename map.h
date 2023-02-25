@@ -4,6 +4,7 @@
 #include <iostream>
 #include <random>
 #include <ncurses.h>
+#include "./map_configs.h"
 using namespace std; //Boo hiss
 
 class Map {

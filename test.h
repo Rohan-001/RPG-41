@@ -5,6 +5,8 @@
 
 using namespace std;
 
+//FIXME this code is not compiling!
+
 ///////////////////////
 // ACTORS BASE CLASS //
 class ACTORS { 

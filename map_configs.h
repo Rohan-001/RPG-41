@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <string>
 #include <iostream>
@@ -32,7 +33,7 @@ vector <string> toxic_peril = {
 "##############################################"
 
 
-}
+};
 
 vector <string> tunnel_beach = {
 
@@ -63,7 +64,7 @@ vector <string> tunnel_beach = {
 "       ########################     ~~~~     ",
 "##############################################"
 
-}
+};
 
 
 };
