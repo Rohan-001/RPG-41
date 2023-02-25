@@ -9,14 +9,16 @@ using namespace std;
 
 ///////////////////////
 // ACTORS BASE CLASS //
-class ACTORS { 
+class Actor { 
 	protected:
 		int xLoc = 0, yLoc = 0;
-		int speed = 10;
-	public: 
-		Actors(int new_x = 0, int new_y = 0) : xLoc(new_x), yLoc(new_y) {
+		int speed = 10; //FIXME this value is causing lots of compiler errors!
+	public:
+		
+		Actor(int new_x = 0, int new_y = 0) : xLoc(new_x), yLoc(new_y) {
 			speed = rand() % 100;
 		}
+		
 		virtual void speak () const { 
 			cout << "I am an Actor with speed " << speed << endl;
 		}
@@ -27,7 +29,7 @@ class ACTORS {
 
 /////////////////////////////////
 // HEROES SUBCLASS FROM ACTORS //
-class HEROES : public ACTORS {
+class Heroes : public Actor {
 	protected: 
 		int HP = 10;
 	public:
@@ -38,7 +40,7 @@ class HEROES : public ACTORS {
 };
 
 // ROLES SUBCLASS FROM HEROES //
-struct Rogue : public HEROES {
+struct Rogue : public Heroes {
 	void speak () const override {
 		cout << "I am a Rogue with speed " << speed << endl;
 		cout << "I start with this much HP: " << HP << endl;
@@ -47,7 +49,7 @@ struct Rogue : public HEROES {
 
 ///////////////////////////////////
 // MONSTER SUBCLASS FROM ACTORS //
-class MONSTER : public ACTORS {
+class Monster : public Actor {
 	protected: 
 		int HP = 10;
 	public:
@@ -58,7 +60,7 @@ class MONSTER : public ACTORS {
 };
 
 // MONSTER ROLES SUBCLASS FROM MONSTER //
-struct SecGuard :public MONSTER {
+struct SecGuard : public Monster {
 	void speak () const override {
 		cout << "I am a Rogue with speed " << speed << endl;
 		cout << "I start with this much HP: " << HP << endl;
@@ -66,23 +68,23 @@ struct SecGuard :public MONSTER {
 };
 
 //this functions lets each actor speak and say what they are
-void speaker(shared_ptr<ACTORS> act) {
+void speaker(shared_ptr<Actor> act) {
 	act->speak();
 }
 
 //this function sorts the actors by speed
-bool sortSpeed(const shared_ptr<ACTORS> &lhs, const shared_ptr<ACTORS> &rhs) {
-	return lhs->speed < rhs->speed;
+bool sortSpeed(const shared_ptr<Actor> &lhs, const shared_ptr<Actor> &rhs) {
+	return lhs->speed < rhs->speed; 
 }
 
 /* 
-  in main we need to have these lines of codes to create the shared ptr vector
-  something like 
+	for passing around objects without slicing, there's certain kinds of tricks
+	see: /public/inherit.cc for some good practices
+	
 
-  vector<shared_ptr<ACTORS>> vec;
+	vector<shared_ptr<Actor>> vec;
+	note that things have to be added to this vector in a particular way
 
-  ACTOR a;
-  a.speed 
 
 */ 
 
