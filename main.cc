@@ -36,14 +36,12 @@ void turn_off_ncurses() {
 
 
 int main() {
+	Hero h;
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
 
 	Map map;
 
 	int x = Map::SIZE / 2, y = Map::SIZE / 2; //Start in middle of the world
-											  // here i want to save the x,y coordinates to map
-											  //	map.setMapX(x);
-											  //	map.setMapY(y);
 
 	int old_x = -1, old_y = -1;
 	while (true) {
@@ -94,7 +92,9 @@ int main() {
 			  */
 			//clear(); //Put this in if the screen is getting corrupted
 			map.draw(x, y);
-			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i\n", x, y);
+			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i", x, y);
+			mvprintw(Map::DISPLAY + 1, 12, "[Hero HP: %i]\n", h.getHP());
+
 			refresh();
 		}
 		old_x = x;

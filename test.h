@@ -2,7 +2,7 @@
 #include <vector>
 #include <memory>
 #include <algorithm>
-
+#include <iostream>
 using namespace std;
 
 ///////////////////////
@@ -20,6 +20,8 @@ class Actor {
 		virtual void speak () const { 
 			cout << "I am an Actor with speed " << speed << endl;
 		}
+		virtual int getHP() const {}
+
 		int get_speed() const {
 			return speed;
 		}
@@ -31,6 +33,9 @@ class Hero : public Actor {
 	protected: 
 		int HP = 10;
 	public:
+		int getHP() const override {
+			return HP;
+		}
 		void speak() const override {
 			cout << "I am a Hero with speed " << speed << endl;
 			cout << "I start with this much HP: " << HP << endl;
@@ -51,6 +56,9 @@ class Monster : public Actor {
 	protected: 
 		int HP = 10;
 	public:
+		int getHP() const override {
+			return HP;
+		}
 		void speak() const override {
 			cout << "I am a Hero with speed " << speed << endl;
 			cout << "I start with this much HP: " << HP << endl;
