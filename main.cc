@@ -34,10 +34,17 @@ void turn_off_ncurses() {
 	if (system("clear")) {}
 }
 
+
 int main() {
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
+
 	Map map;
+
 	int x = Map::SIZE / 2, y = Map::SIZE / 2; //Start in middle of the world
+											  // here i want to save the x,y coordinates to map
+											  //	map.setMapX(x);
+											  //	map.setMapY(y);
+
 	int old_x = -1, old_y = -1;
 	while (true) {
 		int ch = getch(); // Wait for user input, with TIMEOUT delay
@@ -50,13 +57,13 @@ int main() {
 			if (x < 0) x = 0;
 		} else if (ch == UP) {
 			/* If you want to do cin and cout, turn off ncurses, do your thing, then turn it back on
-			turn_off_ncurses();
-			string s;
-			cin >> s;
-			cout << s << endl;
-			sleep(1);
-			turn_on_ncurses();
-			*/
+			   turn_off_ncurses();
+			   string s;
+			   cin >> s;
+			   cout << s << endl;
+			   sleep(1);
+			   turn_on_ncurses();
+			   */
 			y--;
 			if (y < 0) y = 0;
 		} else if (ch == DOWN) {
@@ -67,15 +74,24 @@ int main() {
 		}
 		//Stop flickering by only redrawing on a change
 		if (x != old_x or y != old_y) {
-			/* Do something like this, idk
-			if (map.get(x,y) == Map::TREASURE) {
-				map.set(x,y,Map::OPEN);
-				money++;
-			} else if (map.get(x,y) == Map::WALL) {
-				x = old_x;
-				y = old_y;
-			}
-			*/
+
+			// here we do y, x because in map, i = y, and j = x
+			if (map.getMap_xy(y,x) == Map::TREASURE) {
+			  map.setMap_xy(y,x,Map::OPEN);
+			  }
+			  else if (map.getMap_xy(y,x) == Map::WALL or map.getMap_xy(y,x) == Map::WATER) {
+			  x = old_x;
+			  y = old_y;
+			  }		 
+			  /*Do something like this, idk
+			  if (map.get(x,y) == Map::TREASURE) {
+			  map.set(x,y,Map::OPEN);
+			  money++;
+			  } else if (map.get(x,y) == Map::WALL) {
+			  x = old_x;
+			  y = old_y;
+			  }
+			  */
 			//clear(); //Put this in if the screen is getting corrupted
 			map.draw(x, y);
 			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i\n", x, y);
@@ -84,6 +100,6 @@ int main() {
 		old_x = x;
 		old_y = y;
 		usleep(1'000'000 / MAX_FPS);
+		}
+		turn_off_ncurses();
 	}
-	turn_off_ncurses();
-}

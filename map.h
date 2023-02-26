@@ -13,7 +13,15 @@ class Map {
 	default_random_engine gen;
 	public:
 	//TODO: Write a getter and a setter to get/set the characters in the map
-		//empty functions for this^ are just under the draw(x,y) function
+	//empty functions for this^ are just under the draw(x,y) function
+	char getMap_xy(int userX, int userY) {
+		return map.at(userX).at(userY);
+	}
+	
+	void setMap_xy(int userX, int userY, char tile) {
+		map.at(userX).at(userY) = tile;
+	}
+
 	//TODO: Write a function to save the map and reload the map
 	static const char HERO     = 'H';
 	static const char MONSTER  = 'M';
@@ -119,7 +127,7 @@ class Map {
 			}
 		}
 	}
-
+	/*
 	void set_tile(int x, int y, char new_char) {
 		//TODO
 	}
@@ -127,7 +135,7 @@ class Map {
 		//TODO
 	}
 	// make battle systerm algorithm with linked list 
-
+	*/
 	Map() {
 		init_map();
 	}
