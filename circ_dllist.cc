@@ -16,8 +16,8 @@ CircDLelement<StudentInfo> *insertFront(
 	CircDLelement<StudentInfo> *newElement);
 
 int main(int argc, char **argv) {
-    Bridges *bridges =  new Bridges(999, "rohanotal",
-                                "590561899720");
+    Bridges *bridges =  new Bridges(999, /*userName*/,
+                                /*1234567890*/);
 
 
 

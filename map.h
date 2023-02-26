@@ -122,7 +122,7 @@ class Map {
 
 	void set_tile(int x, int y, char new_char) {
 		//TODO
-	}ZZ
+	}
 	char get_tile(int x, int y) {
 		//TODO
 	}
