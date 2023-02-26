@@ -53,6 +53,14 @@ class Map {
 					else if (d100(gen) <= 40) { //40% chance of water near other water
 						if (map.at(i-1).at(j) == WATER or map.at(i+1).at(j) == WATER or map.at(i).at(j-1) == WATER or map.at(i).at(j+1) == WATER)
 							map.at(i).at(j) = WATER;
+						/*\
+						 for(int i = 0; i<size; i++){
+							for(int j = 0; j< size; j++){
+								cout <<tunnel_beach.at(i).at(j);
+							}
+						 }
+						 or print function with the wall bounce incorporated with tiles i.e print_map()
+						  */
 					}
 				}
 			}
@@ -114,10 +122,11 @@ class Map {
 
 	void set_tile(int x, int y, char new_char) {
 		//TODO
-	}
+	}ZZ
 	char get_tile(int x, int y) {
 		//TODO
 	}
+	// make battle systerm algorithm with linked list 
 
 	Map() {
 		init_map();
