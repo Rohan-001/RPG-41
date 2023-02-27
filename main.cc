@@ -41,22 +41,14 @@ int main() {
 	Hero p2;
 	Hero p3;
 
-	//these three lines are reduntant, because we're going to let the user set the names anyways!
-	p1.set_name("HiroProtagonist");
-	p2.set_name("Da5id");
-	p3.set_name("GUEST(1)"); //this is the canon player 3 name
-	
-	//we could probably do the whole "enter username" part right here!"
 	turn_on_ncurses();
 	clear();
 	turn_off_ncurses();
 
-	introSequence(p1, p2, p3);
+	introSequence(p1, p2, p3); //this is the /////ENTER METAVERSE ID:///// section
 	sleep(3);
 
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
-	/*use turn_off_ncurses() in conjuction with turn_on_ncurses()
-	 if you want to cin/cout anything.*/
 
 	Map map;
 
@@ -101,7 +93,6 @@ int main() {
 			  y = old_y;
 			  }
 			  */
-			//clear(); //Put this in if the screen is getting corrupted
 			map.draw(x, y);
 			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i", x, y);
 			/*basically, %i is a placeholder that gets replaced 
