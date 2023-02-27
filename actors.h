@@ -11,6 +11,8 @@ class Actor {
 	protected:
 		int xLoc = 0, yLoc = 0;
 		int speed = 10;
+		string name;
+		//would it make more sense to put HP here instead of in the subclasses?
 	public:
 		
 		Actor(int new_x = 0, int new_y = 0) : xLoc(new_x), yLoc(new_y) {
@@ -24,6 +26,12 @@ class Actor {
 
 		int get_speed() const {
 			return speed;
+		}
+		string get_name() const {
+			return name;
+		}
+		void set_name(string newName) {
+			name = newName;
 		}
 };
 

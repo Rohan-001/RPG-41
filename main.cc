@@ -2,7 +2,7 @@
 //What bullet points did you do:
 #include "map.h"
 #include <unistd.h>
-#include "test.h"
+#include "actors.h"
 
 const int MAX_FPS = 90; //Cap frame rate
 const unsigned int TIMEOUT = 10; //Milliseconds to wait for a getch to finish
@@ -36,8 +36,15 @@ void turn_off_ncurses() {
 
 
 int main() {
-	Hero h;
+	Hero p1;
+	p1.set_name("HiroProtagonist");
+	Hero p2;
+	p2.set_name("Da5id");
+	Hero p3;
+	p3.set_name("GUEST(1)");
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
+	/*use turn_off_ncurses() in conjuction with turn_on_ncurses()
+	 if you want to cin/cout anything.*/
 
 	Map map;
 
@@ -47,24 +54,16 @@ int main() {
 	while (true) {
 		int ch = getch(); // Wait for user input, with TIMEOUT delay
 		if (ch == 'q' || ch == 'Q') break;
-		else if (ch == RIGHT) {
+		else if (ch == RIGHT || ch == 'd') {
 			x++;
 			if (x >= Map::SIZE) x = Map::SIZE - 1; //Clamp value
-		} else if (ch == LEFT) {
+		} else if (ch == LEFT || ch == 'a') {
 			x--;
 			if (x < 0) x = 0;
-		} else if (ch == UP) {
-			/* If you want to do cin and cout, turn off ncurses, do your thing, then turn it back on
-			   turn_off_ncurses();
-			   string s;
-			   cin >> s;
-			   cout << s << endl;
-			   sleep(1);
-			   turn_on_ncurses();
-			   */
+		} else if (ch == UP || ch == 'w') {
 			y--;
 			if (y < 0) y = 0;
-		} else if (ch == DOWN) {
+		} else if (ch == DOWN || ch == 's') {
 			y++;
 			if (y >= Map::SIZE) y = Map::SIZE - 1; //Clamp value
 		} else if (ch == ERR) { //No keystroke
@@ -93,7 +92,17 @@ int main() {
 			//clear(); //Put this in if the screen is getting corrupted
 			map.draw(x, y);
 			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i", x, y);
-			mvprintw(Map::DISPLAY + 1, 12, "[Hero HP: %i]\n", h.getHP());
+			/*basically, %i is a placeholder that gets replaced 
+			  with the stuff you put after it.
+
+			  see https://en.cppreference.com/w/c/io/fprintf for more info*/
+
+
+			mvprintw(Map::DISPLAY + 2, 0, "[USER: %s / HP: %i ]",p1.get_name(), p1.getHP());
+			mvprintw(Map::DISPLAY + 3, 0, "[USER: %s / HP: %i ]",p2.get_name(), p2.getHP());
+			mvprintw(Map::DISPLAY + 4, 0, "[USER: %s / HP: %i ]",p3.get_name(), p3.getHP());
+			//FIXME printing out strings is resulting in UNDEFINED BEHAVIOUR
+
 
 			refresh();
 		}
