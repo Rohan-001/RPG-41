@@ -11,7 +11,7 @@ class Actor {
 	protected:
 		int xLoc = 0, yLoc = 0;
 		int speed = 10;
-		string name;
+		string name = "theatre kid"; //default value as a joke
 		//would it make more sense to put HP here instead of in the subclasses?
 	public:
 		

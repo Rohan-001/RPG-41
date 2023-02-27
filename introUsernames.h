@@ -1,5 +1,7 @@
+#pragma once
 #include <iostream>
 #include <unistd.h> //for usleep function
+#include "actors.h"
 using namespace std;
 
 //this is a .cc file for now, but later we'll make it a .h file to plug into main
@@ -13,18 +15,19 @@ using namespace std;
 
 //TODO vet the input eventually
 
-int main() {
-
+void introSequence(Hero &a, Hero &b, Hero &c) {
+	/*we're passing by reference (but not const reference)
+	  because we want to change the name values of the hero objects.
+	  */
 	string p1name;
 	string p2name;
 	string p3name;
-
 
 	cout << endl << endl << endl;
 	cout << "///////////METAVERSE SIGN-IN///////////////////////////////////////////////////////////////////////////////////////////////\n" << endl;
 	cout << "(i) Message of the Day: METAVERSE END-OF-LIFE SALE! EVERYTHING MUST GO! 15% OFF ALL PURCHASES FOR THE NEXT 0 days, 3 hou..." << endl;
 
-	usleep(1'500'000);
+	//usleep(1'500'000);
 
 	//player 1 name input
 
@@ -43,7 +46,7 @@ int main() {
 	cin >> p2name;
 
 	cout << "\nSigning in..." << endl;
-	sleep(1);
+	//sleep(1);
 
 	cout << "\nSuccess! " << p2name << " is on " << p1name << "'s friend list." << endl;
 	cout << "\nGUEST(1), would you like to also sign in before joining?" << endl;
@@ -74,8 +77,12 @@ int main() {
 	cout << "\n" << p2name << " and " << p3name << " are now joining " << p1name << "..." << endl;
 	cout << "Good luck, and have fun!" << endl;
 
+	a.set_name(p1name);
+	b.set_name(p2name);
+	c.set_name(p3name);
+
 
 //if they input 1, then prompt for player 3's name just like before. If they input 2, set p3name to "GUEST(1)" which will remain their name for the rest of the game.
 
-
 }
+

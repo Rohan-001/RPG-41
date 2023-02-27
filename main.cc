@@ -3,6 +3,7 @@
 #include "map.h"
 #include <unistd.h>
 #include "actors.h"
+#include "introUsernames.h"
 
 const int MAX_FPS = 90; //Cap frame rate
 const unsigned int TIMEOUT = 10; //Milliseconds to wait for a getch to finish
@@ -37,11 +38,22 @@ void turn_off_ncurses() {
 
 int main() {
 	Hero p1;
-	p1.set_name("HiroProtagonist");
 	Hero p2;
-	p2.set_name("Da5id");
 	Hero p3;
-	p3.set_name("GUEST(1)");
+
+	//these three lines are reduntant, because we're going to let the user set the names anyways!
+	p1.set_name("HiroProtagonist");
+	p2.set_name("Da5id");
+	p3.set_name("GUEST(1)"); //this is the canon player 3 name
+	
+	//we could probably do the whole "enter username" part right here!"
+	turn_on_ncurses();
+	clear();
+	turn_off_ncurses();
+
+	introSequence(p1, p2, p3);
+	sleep(3);
+
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
 	/*use turn_off_ncurses() in conjuction with turn_on_ncurses()
 	 if you want to cin/cout anything.*/
