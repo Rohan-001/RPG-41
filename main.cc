@@ -98,10 +98,10 @@ int main() {
 			  see https://en.cppreference.com/w/c/io/fprintf for more info*/
 
 
-			mvprintw(Map::DISPLAY + 2, 0, "[USER: %s / HP: %i ]",p1.get_name(), p1.getHP());
-			mvprintw(Map::DISPLAY + 3, 0, "[USER: %s / HP: %i ]",p2.get_name(), p2.getHP());
-			mvprintw(Map::DISPLAY + 4, 0, "[USER: %s / HP: %i ]",p3.get_name(), p3.getHP());
-			//FIXME printing out strings is resulting in UNDEFINED BEHAVIOUR
+			mvprintw(Map::DISPLAY + 2, 0, "[USER: %s / HP: %i ]",p1.get_name().c_str(), p1.getHP());
+			mvprintw(Map::DISPLAY + 3, 0, "[USER: %s / HP: %i ]",p2.get_name().c_str(), p2.getHP());
+			mvprintw(Map::DISPLAY + 4, 0, "[USER: %s / HP: %i ]",p3.get_name().c_str(), p3.getHP());
+					
 
 
 			refresh();
