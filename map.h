@@ -12,8 +12,7 @@ class Map {
 	vector<vector<char>> map;
 	default_random_engine gen;
 	public:
-	//TODO: Write a getter and a setter to get/set the characters in the map
-	//empty functions for this^ are just under the draw(x,y) function
+	//Write a getter and a setter to get/set the characters in the map
 	char getMap_xy(int userX, int userY) {
 		return map.at(userX).at(userY);
 	}
@@ -127,15 +126,6 @@ class Map {
 			}
 		}
 	}
-	/*
-	void set_tile(int x, int y, char new_char) {
-		//TODO
-	}
-	char get_tile(int x, int y) {
-		//TODO
-	}
-	// make battle systerm algorithm with linked list 
-	*/
 	Map() {
 		init_map();
 	}
