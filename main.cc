@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include "actors.h"
 #include "introUsernames.h"
+#include <fstream>
 
 const int MAX_FPS = 90; //Cap frame rate
 const unsigned int TIMEOUT = 10; //Milliseconds to wait for a getch to finish
@@ -114,4 +115,13 @@ int main() {
 		usleep(1'000'000 / MAX_FPS);
 		}
 		turn_off_ncurses();
+	// (if == tile or battle over ask to save) may need to make while loop to save over time)	
+		fstream save;
+		save.open("save_data.txt");
+		save << "reading and writing save data to and from this file";
+	//	save.p1.hp();
+	//	save.p2.hp();
+	//	save.p3.hp();
+		save.close();
+
 	}
