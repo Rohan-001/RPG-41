@@ -1,7 +1,7 @@
 reading and writing save data to and from this file
-person1
+ronald
 11
-person2
+rattington
 12
-person3
+GUEST(1)
 13

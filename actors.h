@@ -11,6 +11,7 @@ class Actor {
 	protected:
 		int xLoc = 0, yLoc = 0;
 		int speed = 10;
+		int HP = 10;
 		string name = "theatre kid"; //default value as a joke
 		//would it make more sense to put HP here instead of in the subclasses?
 	public:
@@ -22,8 +23,9 @@ class Actor {
 		virtual void speak () const { 
 			cout << "I am an Actor with speed " << speed << endl;
 		}
-		virtual int getHP() const {}
-		virtual void setHP(int newHP) {}
+
+		int getHP() const {return HP;}
+		void setHP(int newHP) {HP = newHP;}
 
 		int get_speed() const {
 			return speed;
@@ -40,15 +42,15 @@ class Actor {
 // HEROES SUBCLASS FROM ACTORS //
 class Hero : public Actor {
 	protected: 
-		int HP = 10;
+	//	int HP = 10;
 	public:
-		int getHP() const override {
+	/*	int getHP() const override {
 			return HP;
 		}
 		void setHP(int newHP) override {
 			HP = newHP;
 
-		}
+		}*/
 		void speak() const override {
 			cout << "I am a Hero with speed " << speed << endl;
 			cout << "I start with this much HP: " << HP << endl;
@@ -67,13 +69,13 @@ struct Rogue : public Hero {
 // MONSTER SUBCLASS FROM ACTORS //
 class Monster : public Actor {
 	protected: 
-		int HP = 10;
+		//int HP = 10;
 	public:
-		int getHP() const override {
+	/*	int getHP() const override {
 			return HP;
-		}
+		}*/
 		void speak() const override {
-			cout << "I am a Hero with speed " << speed << endl;
+			cout << "I am a Monster with speed " << speed << endl;
 			cout << "I start with this much HP: " << HP << endl;
 		}
 };
@@ -81,7 +83,7 @@ class Monster : public Actor {
 // MONSTER ROLES SUBCLASS FROM MONSTER //
 struct SecGuard : public Monster {
 	void speak () const override {
-		cout << "I am a Rogue with speed " << speed << endl;
+		cout << "I am a Security Guard with speed " << speed << endl;
 		cout << "I start with this much HP: " << HP << endl;
 	}
 };
