@@ -23,6 +23,7 @@ class Actor {
 			cout << "I am an Actor with speed " << speed << endl;
 		}
 		virtual int getHP() const {}
+		virtual void setHP(int newHP) {}
 
 		int get_speed() const {
 			return speed;
@@ -43,6 +44,10 @@ class Hero : public Actor {
 	public:
 		int getHP() const override {
 			return HP;
+		}
+		void setHP(int newHP) override {
+			HP = newHP;
+
 		}
 		void speak() const override {
 			cout << "I am a Hero with speed " << speed << endl;

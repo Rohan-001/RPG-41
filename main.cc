@@ -41,6 +41,9 @@ int main() {
 	Hero p1;
 	Hero p2;
 	Hero p3;
+	p1.setHP(11);
+	p2.setHP(12);
+	p3.setHP(13);
 
 	turn_on_ncurses();
 	clear();
