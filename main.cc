@@ -118,10 +118,10 @@ int main() {
 	// (if == tile or battle over ask to save) may need to make while loop to save over time)	
 		fstream save;
 		save.open("save_data.txt");
-		save << "reading and writing save data to and from this file";
-	//	save.p1.hp();
-	//	save.p2.hp();
-	//	save.p3.hp();
+		save << "reading and writing save data to and from this file" <<  endl;
+		save << p1.get_name() << endl << p1.getHP() << endl;
+		save << p2.get_name() << endl << p2.getHP() << endl;
+		save << p3.get_name() << endl << p3.getHP() << endl;
 		save.close();
 
 	}
