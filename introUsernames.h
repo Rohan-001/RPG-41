@@ -36,14 +36,14 @@ void introSequence(Hero &a, Hero &b, Hero &c) {
 	cout << "Please enter the name of the user you are attempting to join:\n" << endl;
 
 	cout << "(Player 1 name): ";
-	cin >> p1name;
+	getline(cin, p1name);	
 
 	//player 2 name input
 
 	cout << "\nGUEST, please sign in to confim you are on " << p1name << "'s friend list.\n" << endl;
 
 	cout << "(Player 2 name): ";
-	cin >> p2name;
+	getline(cin, p2name);	
 
 	cout << "\nSigning in..." << endl;
 	//sleep(1);
@@ -53,16 +53,24 @@ void introSequence(Hero &a, Hero &b, Hero &c) {
 
 	cout << "\n\t(1) Sign in (enter username)\n\t(2) Do not (remain as guest user)\n" << endl;
 
-	int choiceGuest = 0;
-	cin >> choiceGuest;
-	//TODO turn on quickread for this input, then turn it back off
+	string choiceGuest;
+	getline(cin, choiceGuest);
 
-	if (choiceGuest == 1) {
+	/*	TODO it would be great for UX (user experience)
+		if we turned on quickread for prompts like this.
+		sadly, those functions are in main.cc
+
+		perhaps we could move those to their own header file?
+
+	   */
+
+
+	if (choiceGuest == "1") {
 
 		cout << "\nGUEST(1), please sign in now." << endl;
 
 		cout << "\n(Player 3 name): ";
-		cin >> p3name;
+		getline(cin, p3name);
 
 		cout << "\nSigning in..." << endl;
 		sleep(1);
