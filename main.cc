@@ -82,7 +82,6 @@ int main() {
 		//load x and y positions
 		string x_load, y_load;
 		load >> x >> y;
-		//TODO store old_x and old_y as well
 
 		
 		load.close();
@@ -102,6 +101,12 @@ int main() {
 	if (newOrLoad == "1") {
 	x = Map::SIZE / 2;
 	y = Map::SIZE / 2;
+	}
+
+
+	if (newOrLoad == "2") {
+		map.map_load();
+
 	}
 
 	int old_x = -1, old_y = -1;

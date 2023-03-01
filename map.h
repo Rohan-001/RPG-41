@@ -8,23 +8,11 @@
 #include <fstream>
 using namespace std; //Boo hiss
 
-/*
-	TODO
-	-open an fstream
-	-read data from that file (file is filled with characters)
-	-fill a vector<vector<char>> with those characters
-	-boom! you have a map
-
-	-when user quits, we need to save the map
-
-
-   */
 
 
 class Map {
 	vector<vector<char>> map;
 
-	//TODO have some kind of variable to track what the current map is
 
 	default_random_engine gen;
 	public:
@@ -37,7 +25,6 @@ class Map {
 		map.at(userX).at(userY) = tile;
 	}
 
-	//TODO: Write a function to save the map and reload the map
 	static const char HERO     = 'H';
 	static const char MONSTER  = 'E';//E stands for enemy
 	static const char WALL     = '#';
@@ -174,6 +161,19 @@ class Map {
 			save << endl;
 		}
 		save.close();
+
+	}
+
+	void map_load() {
+		ifstream load;
+		load.open("map_data.txt");
+
+		for (size_t i = 0; i < SIZE; i++) {
+            for (size_t j = 0; j < SIZE; j++) {
+				load >> map.at(i).at(j);
+			}
+		}
+		load.close();
 
 	}
 
