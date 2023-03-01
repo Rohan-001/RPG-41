@@ -1,5 +1,6 @@
 //Put your name(s) here: Jose Cuevas, Ayden Messick, Rohan Otal
-//What bullet points did you do:
+//What bullet points did you do: proper class design, soundtrack
+//soundtrack at https://youtu.be/2Mn54KP2WWM
 #include "map.h"
 #include <unistd.h>
 #include "actors.h"
