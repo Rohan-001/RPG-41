@@ -100,3 +100,10 @@ void introSequence(Hero &a, Hero &b, Hero &c) {
 
 }
 
+
+void outroSequence() {
+	cout << "you win!" << endl;
+
+
+
+}

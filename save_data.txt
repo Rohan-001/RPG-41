@@ -1,8 +1,8 @@
 reading and writing save data to and from this file...
-4
-jonnyJoestar
+2
+ronald
 11
-gyro
+bees
 12
 GUEST(1)
 13

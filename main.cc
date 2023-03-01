@@ -44,6 +44,7 @@ void turn_off_ncurses() {
 
 
 int main() {
+	bool gameWin = false; //set to true if reach exit
 	
 	ifstream load;
 	
@@ -132,11 +133,15 @@ int main() {
 			  y = old_y;
 			  }
 			else if (map.getMap_xy(y,x) == Map::MONSTER) {
-				//TODO COMBAT TIME
+				//COMBAT TIME
 				turn_off_ncurses();
 				doCombat();
 				turn_on_ncurses();
 				map.setMap_xy(y,x,Map::OPEN);
+			}
+			else if (map.getMap_xy(y,x) == Map::EXIT) {
+				gameWin = true;
+				break;
 			}
 
 			map.draw(x, y);
@@ -159,7 +164,12 @@ int main() {
 		usleep(1'000'000 / MAX_FPS);
 		}
 		turn_off_ncurses();
-		
+	
+		if (gameWin) {
+			outroSequence();
+		}
+		else {cout << "GAME OVER." << endl;}
+
 		ofstream save;
 		save.open("save_data.txt");
 
@@ -171,4 +181,6 @@ int main() {
 		save << p3.get_name() << endl << p3.getHP() << endl;
 		save.close();
 
-	}
+}
+
+	
