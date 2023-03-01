@@ -39,11 +39,13 @@ class Map {
 
 	//TODO: Write a function to save the map and reload the map
 	static const char HERO     = 'H';
-	static const char MONSTER  = 'M';
+	static const char MONSTER  = 'E';//E stands for enemy
 	static const char WALL     = '#';
 	static const char WATER    = '~';
 	static const char OPEN     = '.';
 	static const char TREASURE = '$';
+	static const char EXIT     = 'N'; //N stands for Navpoint
+
 	static const size_t SIZE = 100; //World is a 100x100 map
 	static const size_t DISPLAY = 30; //Show a 30x30 area at a time
 	//Randomly generate map
@@ -59,6 +61,12 @@ class Map {
 					map.at(i).at(j) = WALL;
 				else if (i == SIZE/2 and j == SIZE/2) 
 					map.at(i).at(j) = HERO;
+
+
+				else if ((i == 1 || i == 2) && (j == (SIZE/2) - 1 || j == (SIZE/2) || j == (SIZE/2) + 1)) {
+					map.at(i).at(j) = EXIT;
+
+				}
 				else {
 					//5% chance of monster
 					if (d100(gen) <= 5) {
@@ -69,6 +77,16 @@ class Map {
 					}
 					else if (d100(gen) <= 10) { //10% each spot is wall
 						map.at(i).at(j) = WALL;
+					}
+					else if (d100(gen) <= 40) { //40% chance of wall below other wall
+						if (map.at(i-1).at(j) == WALL) {
+							map.at(i).at(j) = WALL;
+						}
+					}
+					else if (d100(gen) <= 10) { //10% chance of wall to L/R of other wall
+						if (map.at(i).at(j-1) == WALL || map.at(i).at(j+1) == WALL) {
+							map.at(i).at(j) = WALL;
+						}
 					}
 					else if (d100(gen) <= 3) { //3% each spot is water
 						map.at(i).at(j) = WATER;
