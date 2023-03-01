@@ -45,6 +45,8 @@ void turn_off_ncurses() {
 
 int main() {
 	
+	ifstream load;
+	
 	int treasure_collected = 0;
 
 	Hero p1;
@@ -53,6 +55,35 @@ int main() {
 	p1.setHP(11);
 	p2.setHP(12);
 	p3.setHP(13);
+
+	load.open("save_data.txt");
+
+	string treasureCount;
+	getline(load,treasureCount);
+	
+	//TODO these only work with strings. will need to stoi all the names later
+	string p1Name_load, p2Name_load, p3Name_load;
+	string p1HP_load, p2HP_load, p3HP_load;
+
+
+	//reads from file into variables declared above
+	getline(load,p1Name_load);
+	getline(load,p1HP_load);
+	getline(load,p2Name_load);
+	getline(load,p2HP_load);
+	getline(load,p3Name_load);
+	getline(load,p3HP_load);
+
+	//FIXME this doesn't work!
+	p1.set_name(p1Name_load);
+	p2.set_name(p2Name_load);
+	p3.set_name(p3Name_load);
+
+
+	load.close();
+
+
+
 
 	turn_on_ncurses();
 	clear();
@@ -128,9 +159,11 @@ int main() {
 		usleep(1'000'000 / MAX_FPS);
 		}
 		turn_off_ncurses();
-	// (if == tile or battle over ask to save) may need to make while loop to save over time)	
-		fstream save;
+		
+		ofstream save;
 		save.open("save_data.txt");
+
+	
 		save << "reading and writing save data to and from this file..." <<  endl;
 		save << treasure_collected << endl;
 		save << p1.get_name() << endl << p1.getHP() << endl;

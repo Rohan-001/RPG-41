@@ -1,2 +1,8 @@
 reading and writing save data to and from this file...
-
+0
+jojo
+11
+thejo
+12
+GUEST(1)
+13
