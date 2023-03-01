@@ -1,5 +1,5 @@
 //Put your name(s) here: Jose Cuevas, Ayden Messick, Rohan Otal
-//What bullet points did you do: proper class design, soundtrack
+//What bullet points did you do: proper class design, soundtrack, map traversal, saving/loading, style(?)
 //soundtrack at https://youtu.be/2Mn54KP2WWM
 #include "map.h"
 #include <unistd.h>
@@ -169,7 +169,10 @@ int main() {
 				doCombat();
 				turn_on_ncurses();
 				map.setMap_xy(y,x,Map::OPEN);
-				characterThoughts = "that was a close one...";
+				p1.setHP(p1.getHP() - 1);
+				p2.setHP(p2.getHP() - 1);
+				p3.setHP(p3.getHP() - 1);
+				characterThoughts = "Whew, that was a close one...";
 			}
 			else if (map.getMap_xy(y,x) == Map::EXIT) {
 				gameWin = true;
