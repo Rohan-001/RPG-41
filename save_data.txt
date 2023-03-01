@@ -1,8 +1,8 @@
 reading and writing save data to and from this file...
-5
-ronald
 11
-scringus
+ronaldTheRat
+11
+no
 12
 GUEST(1)
 13

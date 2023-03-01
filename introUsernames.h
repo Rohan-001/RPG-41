@@ -25,7 +25,9 @@ void introSequence(Hero &a, Hero &b, Hero &c) {
 	string p3name;
 
 	cout << endl << endl << endl;
+	sleep(1);
 	cout << "///////////METAVERSE SIGN-IN///////////////////////////////////////////////////////////////////////////////////////////////\n" << endl;
+	sleep(1);
 	cout << "(i) Message of the Day: METAVERSE END-OF-LIFE SALE! EVERYTHING MUST GO! 15% OFF ALL PURCHASES FOR THE NEXT 0 days, 3 hou..." << endl;
 
 	//usleep(1'500'000);

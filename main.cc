@@ -45,7 +45,18 @@ void turn_off_ncurses() {
 
 int main() {
 	bool gameWin = false; //set to true if reach exit
+
+	string newOrLoad;
+
+	while (newOrLoad != "1" && newOrLoad != "2") {
+
+		cout << "\t(1) NEW GAME\n\t(2) LOAD GAME" << endl;
+		getline(cin, newOrLoad);
+
+	}
 	
+
+
 	ifstream load;
 	
 	int treasure_collected = 0;
@@ -57,41 +68,52 @@ int main() {
 	p2.setHP(12);
 	p3.setHP(13);
 
-	load.open("save_data.txt");
-
-	string treasureCount;
-	getline(load,treasureCount);
-	
-	//TODO these only work with strings. will need to stoi all the names later
-	string p1Name_load, p2Name_load, p3Name_load;
-	string p1HP_load, p2HP_load, p3HP_load;
-
-
-	//reads from file into variables declared above
-	getline(load,p1Name_load);
-	getline(load,p1HP_load);
-	getline(load,p2Name_load);
-	getline(load,p2HP_load);
-	getline(load,p3Name_load);
-	getline(load,p3HP_load);
-
-	//FIXME this doesn't work!
-	p1.set_name(p1Name_load);
-	p2.set_name(p2Name_load);
-	p3.set_name(p3Name_load);
-
-
-	load.close();
-
-
-
-
 	turn_on_ncurses();
 	clear();
 	turn_off_ncurses();
+	
+	string treasureCount;
 
-	introSequence(p1, p2, p3); //this is the /////ENTER METAVERSE ID:///// section
-	sleep(3);
+	if (newOrLoad == "2") {
+		//load game
+		load.open("save_data.txt");
+		getline(load,treasureCount);
+
+    	//TODO these only work with strings. will need to stoi all the names later
+    	string p1Name_load, p2Name_load, p3Name_load;
+    	string p1HP_load, p2HP_load, p3HP_load;
+
+
+   		//reads from file into variables declared above
+   		getline(load,p1Name_load);
+   		getline(load,p1HP_load);
+   		getline(load,p2Name_load);
+   		getline(load,p2HP_load);
+   		getline(load,p3Name_load);
+   		getline(load,p3HP_load);
+	
+    	//FIXME this doesn't work!
+    	p1.set_name(p1Name_load);
+    	p2.set_name(p2Name_load);
+    	p3.set_name(p3Name_load);
+		
+		load.close();
+	}
+	else {
+		//new game
+		introSequence(p1,p2,p3); /////ENTER METAVERSE ID///////
+		sleep(3);
+	}
+
+
+
+	
+
+
+
+	
+
+
 
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
 
