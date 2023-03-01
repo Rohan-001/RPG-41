@@ -100,6 +100,10 @@ int main() {
 	int x = Map::SIZE / 2, y = Map::SIZE / 2; //Start in middle of the world
 
 	int old_x = -1, old_y = -1;
+
+	string characterThoughts = "Hope we make it out of here in time...";
+	default_random_engine randDialogue;
+
 	while (true) {
 		int ch = getch(); // Wait for user input, with TIMEOUT delay
 		if (ch == 'q' || ch == 'Q') break;
@@ -121,16 +125,33 @@ int main() {
 		//Stop flickering by only redrawing on a change
 		if (x != old_x or y != old_y) {
 
-
+			characterThoughts = "I can see the exit beacon to the north!";
 			
 			// here we do y, x because in map, i = y, and j = x
 			if (map.getMap_xy(y,x) == Map::TREASURE) {
 				treasure_collected++;
 			  	map.setMap_xy(y,x,Map::OPEN);
+
+				uniform_int_distribution<int> randTreasure(1,3);
+				switch(randTreasure(randDialogue)) {
+					case 1:
+						characterThoughts = "oh, it's just an NFT.";
+						break;
+					case 2:
+						characterThoughts = "It's a subscription code! Oh, that service shut down a few days ago...";
+						break;
+					case 3:
+						characterThoughts = "That's a funny meme. I think I'll take it.";
+							break;
+
+				}
+
+
 			  }
 			  else if (map.getMap_xy(y,x) == Map::WALL or map.getMap_xy(y,x) == Map::WATER) {
 			  x = old_x;
 			  y = old_y;
+			  characterThoughts = "ah, yes. collision";
 			  }
 			else if (map.getMap_xy(y,x) == Map::MONSTER) {
 				//COMBAT TIME
@@ -138,6 +159,7 @@ int main() {
 				doCombat();
 				turn_on_ncurses();
 				map.setMap_xy(y,x,Map::OPEN);
+				characterThoughts = "that was a close one...";
 			}
 			else if (map.getMap_xy(y,x) == Map::EXIT) {
 				gameWin = true;
@@ -156,6 +178,9 @@ int main() {
 			mvprintw(Map::DISPLAY + 3, 0, "[USER: %s / HP: %i ]",p1.get_name().c_str(), p1.getHP());
 			mvprintw(Map::DISPLAY + 4, 0, "[USER: %s / HP: %i ]",p2.get_name().c_str(), p2.getHP());
 			mvprintw(Map::DISPLAY + 5, 0, "[USER: %s / HP: %i ]",p3.get_name().c_str(), p3.getHP());
+			mvprintw(Map::DISPLAY + 6, 0, "");
+			clrtoeol(); //should clear the line
+			mvprintw(Map::DISPLAY + 6, 0, "\"%s\"", characterThoughts.c_str());
 
 			refresh();
 		}
@@ -168,7 +193,7 @@ int main() {
 		if (gameWin) {
 			outroSequence();
 		}
-		else {cout << "GAME OVER." << endl;}
+		else {cout << "Game saved." << endl;}
 
 		ofstream save;
 		save.open("save_data.txt");
