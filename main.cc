@@ -17,12 +17,13 @@ const int RIGHT = 67;
 void turn_on_ncurses() {
 	initscr();//Start curses mode
 	start_color(); //Enable Colors if possible
-	init_pair(1, COLOR_WHITE, COLOR_WHITE); //Set up some color pairs
-	init_pair(2, COLOR_BLUE, COLOR_CYAN);
-	init_pair(3, COLOR_GREEN, COLOR_WHITE);
-	init_pair(4, COLOR_YELLOW, COLOR_WHITE);
-	init_pair(5, COLOR_BLACK, COLOR_RED);
-	init_pair(6, COLOR_MAGENTA, COLOR_WHITE);
+	//           foreground   background
+	init_pair(1, COLOR_WHITE, COLOR_BLACK); //standard tile
+	init_pair(2, COLOR_CYAN, COLOR_BLUE); //water
+	init_pair(3, COLOR_GREEN, COLOR_BLACK); //hero starting point
+	init_pair(4, COLOR_YELLOW, COLOR_BLACK); //treasure
+	init_pair(5, COLOR_WHITE, COLOR_WHITE);//wall
+	init_pair(6, COLOR_RED, COLOR_BLACK);//enemy
 	clear();
 	noecho();
 	cbreak();

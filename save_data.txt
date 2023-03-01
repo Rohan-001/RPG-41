@@ -1,8 +1,11 @@
 reading and writing save data to and from this file
-Truck Freak
+kgjafkgh
 11
-Crazy Ace
+uerwhiu
 12
-The Fighter
+GUEST(1)
+13
+
+ter
 13
 ...any long names from previous runs will overflow onto this line
