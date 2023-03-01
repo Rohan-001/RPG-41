@@ -1,13 +1,16 @@
 #pragma once
 #include "actors.h"
+#include "toggleNCurses.h"
 
 
-void combat {
+void doCombat() {
 	//empty for now
+	cout << "bombat!" << endl;
+
+	sleep(2);
+
+
+
+
 	
-
-
-
-
-
 }

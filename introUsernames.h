@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unistd.h> //for usleep function
 #include "actors.h"
+#include "toggleNCurses.h"
 using namespace std;
 
 //this is a .cc file for now, but later we'll make it a .h file to plug into main
@@ -55,7 +56,12 @@ void introSequence(Hero &a, Hero &b, Hero &c) {
 
 	string choiceGuest;
 	getline(cin, choiceGuest);
-
+	
+	//turn_on_ncurses();
+	//int ch = getch(); 
+	//turn_off_ncurses();
+	
+	
 	/*	TODO it would be great for UX (user experience)
 		if we turned on quickread for prompts like this.
 		sadly, those functions are in main.cc

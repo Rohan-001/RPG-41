@@ -7,6 +7,7 @@
 #include "introUsernames.h"
 #include <fstream>
 #include "toggleNCurses.h"
+#include "combat.h"
 
 const int MAX_FPS = 90; //Cap frame rate
 
@@ -101,6 +102,10 @@ int main() {
 			  }
 			else if (map.getMap_xy(y,x) == Map::MONSTER) {
 				//TODO COMBAT TIME
+				turn_off_ncurses();
+				doCombat();
+				turn_on_ncurses();
+				map.setMap_xy(y,x,Map::OPEN);
 			}
 
 			map.draw(x, y);

@@ -1,9 +1,2 @@
 reading and writing save data to and from this file...
-2
-ronaldRattington
-11
-jojo 9
-12
-GUEST(1)
-13
-mes from previous runs will overflow onto this line
+
