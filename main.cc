@@ -16,31 +16,8 @@ const int DOWN = 66;
 const int LEFT = 68;
 const int RIGHT = 67;
 
+//turn_on_ncurses() and turn_off_ncurses() have been moved to their own file.
 
-/*
-//Turns on full screen text mode
-void turn_on_ncurses() {
-	initscr();//Start curses mode
-	start_color(); //Enable Colors if possible
-	//           foreground   background
-	init_pair(1, COLOR_WHITE, COLOR_BLACK); //standard tile
-	init_pair(2, COLOR_CYAN, COLOR_BLACK); //water
-	init_pair(3, COLOR_GREEN, COLOR_BLACK); //hero starting point
-	init_pair(4, COLOR_YELLOW, COLOR_BLACK); //treasure
-	init_pair(5, COLOR_WHITE, COLOR_WHITE);//wall
-	init_pair(6, COLOR_RED, COLOR_BLACK);//enemy
-	clear();
-	noecho();
-	cbreak();
-	timeout(TIMEOUT); //Set a max delay for key entry
-}
-
-//Exit full screen mode - also do this if you ever want to use cout or gtest or something
-void turn_off_ncurses() {
-	clear();
-	endwin(); // End curses mode
-	if (system("clear")) {}
-}*/
 
 
 int main() {
@@ -49,16 +26,12 @@ int main() {
 	string newOrLoad;
 
 	while (newOrLoad != "1" && newOrLoad != "2") {
-
 		cout << "\t(1) NEW GAME\n\t(2) LOAD GAME" << endl;
 		getline(cin, newOrLoad);
-
 	}
 	
 
 
-	ifstream load;
-	
 	int treasure_collected = 0;
 
 	Hero p1;
@@ -72,14 +45,17 @@ int main() {
 	clear();
 	turn_off_ncurses();
 	
-	string treasureCount;
 
 	if (newOrLoad == "2") {
 		//load game
+		ifstream load;
 		load.open("save_data.txt");
-		getline(load,treasureCount);
 
-    	//TODO these only work with strings. will need to stoi all the names later
+
+		string treasure_load;
+		getline(load,treasure_load);
+		treasure_collected = stoi(treasure_load);
+
     	string p1Name_load, p2Name_load, p3Name_load;
     	string p1HP_load, p2HP_load, p3HP_load;
 
@@ -92,10 +68,13 @@ int main() {
    		getline(load,p3Name_load);
    		getline(load,p3HP_load);
 	
-    	//FIXME this doesn't work!
     	p1.set_name(p1Name_load);
     	p2.set_name(p2Name_load);
     	p3.set_name(p3Name_load);
+
+		p1.setHP(stoi(p1HP_load));
+		p2.setHP(stoi(p2HP_load));
+		p3.setHP(stoi(p3HP_load));
 		
 		load.close();
 	}
@@ -221,7 +200,7 @@ int main() {
 		save.open("save_data.txt");
 
 	
-		save << "reading and writing save data to and from this file..." <<  endl;
+		//save << "reading and writing save data to and from this file..." <<  endl;
 		save << treasure_collected << endl;
 		save << p1.get_name() << endl << p1.getHP() << endl;
 		save << p2.get_name() << endl << p2.getHP() << endl;

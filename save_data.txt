@@ -1,8 +1,7 @@
-reading and writing save data to and from this file...
+9
+player1
 11
-ronaldTheRat
-11
-no
+player2
 12
-GUEST(1)
+player3
 13
