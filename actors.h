@@ -39,26 +39,20 @@ class Actor {
 };
 
 /////////////////////////////////
-// HEROES SUBCLASS FROM ACTORS //
+// HEROES INHERIT FROM ACTORS //
 class Hero : public Actor {
 	protected: 
-	//	int HP = 10;
 	public:
-	/*	int getHP() const override {
-			return HP;
-		}
-		void setHP(int newHP) override {
-			HP = newHP;
-
-		}*/
 		void speak() const override {
 			cout << "I am a Hero with speed " << speed << endl;
 			cout << "I start with this much HP: " << HP << endl;
 		}
 };
 
-// ROLES SUBCLASS FROM HEROES //
-struct Rogue : public Hero {
+// HERO SUBCLASSES INHERIT FROM HEROES //
+class Rogue : public Hero {
+	protected:
+	public:
 	void speak () const override {
 		cout << "I am a Rogue with speed " << speed << endl;
 		cout << "I start with this much HP: " << HP << endl;
@@ -66,22 +60,20 @@ struct Rogue : public Hero {
 };
 
 ///////////////////////////////////
-// MONSTER SUBCLASS FROM ACTORS //
-class Monster : public Actor {
+// ENEMIES INHERIT FROM ACTORS //
+class Enemy : public Actor {
 	protected: 
-		//int HP = 10;
 	public:
-	/*	int getHP() const override {
-			return HP;
-		}*/
 		void speak() const override {
-			cout << "I am a Monster with speed " << speed << endl;
+			cout << "I am an Enemy with speed " << speed << endl;
 			cout << "I start with this much HP: " << HP << endl;
 		}
 };
 
-// MONSTER ROLES SUBCLASS FROM MONSTER //
-struct SecGuard : public Monster {
+// ENEMY TYPES INHERIT FROM ENEMY //
+class SecGuard : public Enemy {
+	protected:
+	public:
 	void speak () const override {
 		cout << "I am a Security Guard with speed " << speed << endl;
 		cout << "I start with this much HP: " << HP << endl;
