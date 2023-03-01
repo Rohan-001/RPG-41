@@ -107,6 +107,8 @@ class Map {
 			}
 		}
 	}
+
+
 	//Draw the DISPLAY tiles around coordinate (x,y)
 	void draw(int x, int y) {
 		int start_x = x - DISPLAY/2;
@@ -160,6 +162,23 @@ class Map {
 			}
 		}
 	}
+	
+	void map_save() {
+		ofstream save;
+		save.open("map_data.txt");
+
+		for (size_t i = 0; i < SIZE; i++) {
+			for (size_t j = 0; j < SIZE; j++) {
+				save << map.at(i).at(j);
+			}
+			save << endl;
+		}
+		save.close();
+
+	}
+
+
+
 	Map() {
 		init_map();
 	}

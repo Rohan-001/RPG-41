@@ -213,7 +213,8 @@ int main() {
 		save << p3.get_name() << endl << p3.getHP() << endl;
 		save << x << " " << y << endl;
 		save.close();
-
+		
+		map.map_save();
 }
 
 	
