@@ -4,12 +4,28 @@
 #include <iostream>
 #include <random>
 #include <ncurses.h>
-#include "./map_configs.h"
+#include "./levels.h"
+#include <fstream>
 using namespace std; //Boo hiss
+
+/*
+	TODO
+	-open an fstream
+	-read data from that file (file is filled with characters)
+	-fill a vector<vector<char>> with those characters
+	-boom! you have a map
+
+	-when user quits, we need to save the map
+
+
+   */
 
 
 class Map {
 	vector<vector<char>> map;
+
+	//TODO have some kind of variable to track what the current map is
+
 	default_random_engine gen;
 	public:
 	//Write a getter and a setter to get/set the characters in the map
