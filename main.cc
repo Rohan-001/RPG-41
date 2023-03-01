@@ -20,7 +20,7 @@ void turn_on_ncurses() {
 	start_color(); //Enable Colors if possible
 	//           foreground   background
 	init_pair(1, COLOR_WHITE, COLOR_BLACK); //standard tile
-	init_pair(2, COLOR_CYAN, COLOR_BLUE); //water
+	init_pair(2, COLOR_CYAN, COLOR_BLACK); //water
 	init_pair(3, COLOR_GREEN, COLOR_BLACK); //hero starting point
 	init_pair(4, COLOR_YELLOW, COLOR_BLACK); //treasure
 	init_pair(5, COLOR_WHITE, COLOR_WHITE);//wall
@@ -40,6 +40,9 @@ void turn_off_ncurses() {
 
 
 int main() {
+	
+	int treasure_collected = 0;
+
 	Hero p1;
 	Hero p2;
 	Hero p3;
@@ -84,7 +87,8 @@ int main() {
 
 			// here we do y, x because in map, i = y, and j = x
 			if (map.getMap_xy(y,x) == Map::TREASURE) {
-			  map.setMap_xy(y,x,Map::OPEN);
+				treasure_collected++;
+			  	map.setMap_xy(y,x,Map::OPEN);
 			  }
 			  else if (map.getMap_xy(y,x) == Map::WALL or map.getMap_xy(y,x) == Map::WATER) {
 			  x = old_x;
@@ -107,11 +111,10 @@ int main() {
 			  see https://en.cppreference.com/w/c/io/fprintf for more info*/
 
 
-			mvprintw(Map::DISPLAY + 2, 0, "[USER: %s / HP: %i ]",p1.get_name().c_str(), p1.getHP());
-			mvprintw(Map::DISPLAY + 3, 0, "[USER: %s / HP: %i ]",p2.get_name().c_str(), p2.getHP());
-			mvprintw(Map::DISPLAY + 4, 0, "[USER: %s / HP: %i ]",p3.get_name().c_str(), p3.getHP());
-					
-
+			mvprintw(Map::DISPLAY + 2, 0, "[ITEMS COLLECTED: %i]",treasure_collected); 
+			mvprintw(Map::DISPLAY + 3, 0, "[USER: %s / HP: %i ]",p1.get_name().c_str(), p1.getHP());
+			mvprintw(Map::DISPLAY + 4, 0, "[USER: %s / HP: %i ]",p2.get_name().c_str(), p2.getHP());
+			mvprintw(Map::DISPLAY + 5, 0, "[USER: %s / HP: %i ]",p3.get_name().c_str(), p3.getHP());
 
 			refresh();
 		}
@@ -123,7 +126,8 @@ int main() {
 	// (if == tile or battle over ask to save) may need to make while loop to save over time)	
 		fstream save;
 		save.open("save_data.txt");
-		save << "reading and writing save data to and from this file" <<  endl;
+		save << "reading and writing save data to and from this file..." <<  endl;
+		save << treasure_collected << endl;
 		save << p1.get_name() << endl << p1.getHP() << endl;
 		save << p2.get_name() << endl << p2.getHP() << endl;
 		save << p3.get_name() << endl << p3.getHP() << endl;

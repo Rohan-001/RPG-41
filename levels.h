@@ -8,11 +8,7 @@
 using namespace std;
 
 struct map_configs {
-vector<vector<char>> testMap {
-'#','#','#','#','#','#','#','#','#',
-
-}
-
+};
 
 
 /*
@@ -47,7 +43,6 @@ vector <string> tunnel_beach = {
 };*/
 
 
-};
 
 
 

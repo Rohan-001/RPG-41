@@ -1,11 +1,11 @@
-reading and writing save data to and from this file
-kgjafkgh
+reading and writing save data to and from this file...
+10
+jojo
 11
-uerwhiu
+jojo2
 12
 GUEST(1)
 13
 
-ter
 13
-...any long names from previous runs will overflow onto this line
+ long names from previous runs will overflow onto this line
