@@ -44,6 +44,9 @@ int main() {
 	turn_on_ncurses();
 	clear();
 	turn_off_ncurses();
+
+	int x = 0;
+	int y = 0;
 	
 
 	if (newOrLoad == "2") {
@@ -51,16 +54,16 @@ int main() {
 		ifstream load;
 		load.open("save_data.txt");
 
-
+		//load treasure
 		string treasure_load;
 		getline(load,treasure_load);
 		treasure_collected = stoi(treasure_load);
 
+
+		//load health and names
     	string p1Name_load, p2Name_load, p3Name_load;
     	string p1HP_load, p2HP_load, p3HP_load;
 
-
-   		//reads from file into variables declared above
    		getline(load,p1Name_load);
    		getline(load,p1HP_load);
    		getline(load,p2Name_load);
@@ -76,6 +79,12 @@ int main() {
 		p2.setHP(stoi(p2HP_load));
 		p3.setHP(stoi(p3HP_load));
 		
+		//load x and y positions
+		string x_load, y_load;
+		load >> x >> y;
+		//TODO store old_x and old_y as well
+
+		
 		load.close();
 	}
 	else {
@@ -86,19 +95,14 @@ int main() {
 
 
 
-	
-
-
-
-	
-
-
-
 	turn_on_ncurses(); //DON'T DO CIN or COUT WHEN NCURSES MODE IS ON
 
 	Map map;
 
-	int x = Map::SIZE / 2, y = Map::SIZE / 2; //Start in middle of the world
+	if (newOrLoad == "1") {
+	x = Map::SIZE / 2;
+	y = Map::SIZE / 2;
+	}
 
 	int old_x = -1, old_y = -1;
 
@@ -189,6 +193,8 @@ int main() {
 		old_y = y;
 		usleep(1'000'000 / MAX_FPS);
 		}
+
+
 		turn_off_ncurses();
 	
 		if (gameWin) {
@@ -205,6 +211,7 @@ int main() {
 		save << p1.get_name() << endl << p1.getHP() << endl;
 		save << p2.get_name() << endl << p2.getHP() << endl;
 		save << p3.get_name() << endl << p3.getHP() << endl;
+		save << x << " " << y << endl;
 		save.close();
 
 }

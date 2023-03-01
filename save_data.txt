@@ -1,7 +1,8 @@
 9
-player1
+aaaaaaaa
 11
-player2
+bbb
 12
-player3
+GUEST(1)
 13
+50 2
