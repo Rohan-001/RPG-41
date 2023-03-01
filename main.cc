@@ -6,14 +6,17 @@
 #include "actors.h"
 #include "introUsernames.h"
 #include <fstream>
+#include "toggleNCurses.h"
 
 const int MAX_FPS = 90; //Cap frame rate
-const unsigned int TIMEOUT = 10; //Milliseconds to wait for a getch to finish
+
 const int UP = 65; //Key code for up arrow
 const int DOWN = 66;
 const int LEFT = 68;
 const int RIGHT = 67;
 
+
+/*
 //Turns on full screen text mode
 void turn_on_ncurses() {
 	initscr();//Start curses mode
@@ -36,7 +39,7 @@ void turn_off_ncurses() {
 	clear();
 	endwin(); // End curses mode
 	if (system("clear")) {}
-}
+}*/
 
 
 int main() {
@@ -85,6 +88,8 @@ int main() {
 		//Stop flickering by only redrawing on a change
 		if (x != old_x or y != old_y) {
 
+
+			
 			// here we do y, x because in map, i = y, and j = x
 			if (map.getMap_xy(y,x) == Map::TREASURE) {
 				treasure_collected++;
@@ -93,16 +98,11 @@ int main() {
 			  else if (map.getMap_xy(y,x) == Map::WALL or map.getMap_xy(y,x) == Map::WATER) {
 			  x = old_x;
 			  y = old_y;
-			  }		 
-			  /*Do something like this, idk
-			  if (map.get(x,y) == Map::TREASURE) {
-			  map.set(x,y,Map::OPEN);
-			  money++;
-			  } else if (map.get(x,y) == Map::WALL) {
-			  x = old_x;
-			  y = old_y;
 			  }
-			  */
+			else if (map.getMap_xy(y,x) == Map::MONSTER) {
+				//TODO COMBAT TIME
+			}
+
 			map.draw(x, y);
 			mvprintw(Map::DISPLAY + 1, 0, "X: %i Y: %i", x, y);
 			/*basically, %i is a placeholder that gets replaced 

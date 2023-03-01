@@ -1,11 +1,9 @@
 reading and writing save data to and from this file...
-10
-jojo
+2
+ronaldRattington
 11
-jojo2
+jojo 9
 12
 GUEST(1)
 13
-
-13
- long names from previous runs will overflow onto this line
+mes from previous runs will overflow onto this line
